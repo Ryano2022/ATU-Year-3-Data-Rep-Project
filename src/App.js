@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container>
-            <Navbar.Brand href="/">Films Collection</Navbar.Brand>
+            <Navbar.Brand href="/">Films Collection</Navbar.Brand>       {/* This is the name on the nav bar. */}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -28,10 +28,10 @@ function App() {
         </Navbar>
 
         <Routes>
-          <Route path='/' element={<Content></Content>}></Route>
-          <Route path='/browse' element={<Read></Read>}></Route>
-          <Route path='/add' element={<Write></Write>}></Route>
-          <Route path='/update/:id' element={<Update></Update>}></Route>
+          <Route path='/' element={<Content></Content>}></Route>          {/* For viewing the home page.                   */}
+          <Route path='/browse' element={<Read></Read>}></Route>          {/* For viewing all the films in the collection. */}
+          <Route path='/add' element={<Write></Write>}></Route>           {/* For adding a new film to the collection.     */}
+          <Route path='/update/:id' element={<Update></Update>}></Route>  {/* For updating the films in the collection.    */}
         </Routes>
       </div>
     </BrowserRouter>
