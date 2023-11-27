@@ -1,3 +1,9 @@
 .App {
   text-align: center;
+  background-color: #525659;
+  color: white;
+}
+
+html {
+  background-color: #525659;
 }
