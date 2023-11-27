@@ -22,6 +22,7 @@ function App() {
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/Browse">Browse</Nav.Link>
                 <Nav.Link href="/Add">Add</Nav.Link>
+                {/*<Nav.Link href="/Update">Update</Nav.Link>*/}
               </Nav>
             </Navbar.Collapse>
           </Container>
