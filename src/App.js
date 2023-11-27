@@ -4,6 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Content from './components/content';
+import Read from './components/read';
+import Write from './components/write';
+import Update from './components/update';
 
 function App() {
   return (
