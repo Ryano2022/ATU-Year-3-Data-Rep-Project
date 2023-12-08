@@ -8,8 +8,8 @@ function Films(props) {
     <div className="container">
       <div className="row"> {/* Making it so that they can only be in rows. */}
         {myFilms.map((film) => (
-          <div key={film._id} className="col-md-4 mb-4">
-            <FilmItem myFilm={film} /> {/* Displaying entries from the collection.  */}
+          <div className="col-md-4 mb-4">
+            <FilmItem myFilm={film} key={film._id} Reload={()=>{props.DataReload()}}/> {/* Displaying entries from the collection.  */}
           </div>
         ))}
       </div>

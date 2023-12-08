@@ -19,16 +19,22 @@ async function main() {
 
 const filmSchema = new mongoose.Schema({
   title: String,
-  cover: String,
+  poster: String,
   director: String
 })
 
 const filmModel = mongoose.model('my_films', filmSchema);
 
-// For the build.
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../build')));
-app.use('/static', express.static(path.join(__dirname, 'build//static')));
+// Allow requests from other URLs.
+const cors = require('cors');
+app.use(cors());
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Home page.
 app.get('/', (req, res) => {
@@ -40,25 +46,28 @@ app.post('/api/film', (req, res) => {
   // For MongoDB
   filmModel.create({
     title: req.body.title,
-    cover: req.body.cover,
+    poster: req.body.poster,
     director: req.body.director
   })
-    .then(() => { res.send("Film created. ") })
-    .catch(() => { res.send("Film was NOT created. ") });
+    .then(() => { res.status(201).send("Film created.") })
+    .catch(() => { res.status(500).send("Film was NOT created.") });
 })
 
 // API to use.
 app.get('/api/films', async (req, res) => {
   let films = await filmModel.find({});
-  res.json(films);
-}
-)
+  res.status(200).json(films);
+})
 
 // Find by the ID.
 app.get('/api/film/:identifier', async (req, res) => {
   console.log(req.params.identifier)
   let film = await filmModel.findById(req.params.identifier);
-  res.send(film);
+  if (film) {
+    res.status(200).send(film);
+  } else {
+    res.status(404).send("Film not found.");
+  }
 })
 
 // Find by the ID and then update the film.
@@ -66,7 +75,11 @@ app.put('/api/film/:id', async (req, res) => {
   console.log("Update: " + req.params.id);
 
   let film = await filmModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.send(film);
+  if (film) {
+    res.status(200).send(film);
+  } else {
+    res.status(404).send("Film not found.");
+  }
 })
 
 // For deleting the film.
@@ -76,14 +89,12 @@ app.delete('/api/film/:id', async (req, res) => {
 
   // Find the ID of the film and then delete the film.
   let film = await filmModel.findByIdAndDelete(req.params.id);
-  res.status(200).send(film);
-}
-)
-
-// For any other page than the ones above.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../build/index.html'));
-});
+  if (film) {
+    res.status(200).send(film);
+  } else {
+    res.status(404).send("Film not found.");
+  }
+})
 
 // Which port the server is listening on.
 app.listen(
