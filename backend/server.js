@@ -25,16 +25,10 @@ const filmSchema = new mongoose.Schema({
 
 const filmModel = mongoose.model('my_films', filmSchema);
 
-// Allow requests from other URLs.
-const cors = require('cors');
-app.use(cors());
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// For the build.
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 // Home page.
 app.get('/', (req, res) => {
@@ -74,6 +68,22 @@ app.put('/api/film/:id', async (req, res) => {
   let film = await filmModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.send(film);
 })
+
+// For deleting the film.
+app.delete('/api/film/:id', async (req, res) => {
+  // Logging it so you can see in the console.
+  console.log("Delete: " + req.params.id);
+
+  // Find the ID of the film and then delete the film.
+  let film = await filmModel.findByIdAndDelete(req.params.id);
+  res.status(200).send(film);
+}
+)
+
+// For any other page than the ones above.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../build/index.html'));
+});
 
 // Which port the server is listening on.
 app.listen(
