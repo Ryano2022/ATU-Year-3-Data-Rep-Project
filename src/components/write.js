@@ -4,18 +4,18 @@ import axios from "axios";
 function Create() {
   // Adding of state variables.
   const [title, setTitle] = useState('');
-  const [cover, setCover] = useState('');
+  const [poster, setPoster] = useState('');
   const [director, setDirector] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Title: " + title +
-      " Cover: " + cover +
+      " Poster: " + poster +
       " Director: " + director);
 
     const film = {
       title: title,
-      cover: cover,
+      poster: poster,
       director: director
     }
     // Make a post to that URL and send the film object.
@@ -67,13 +67,13 @@ function Create() {
         </div>
         <div className="form-group">
           <br/>
-          <label>Film Cover (URL): </label>
+          <label>Film Poster (URL): </label>
           <input type="text"
             className="form-control"
-            value={cover} // Text in the input box.
+            value={poster} // Text in the input box.
             onChange={
               (e) => {
-                setCover(e.target.value) // Update value.
+                setPoster(e.target.value) // Update value.
               }
             }
           />

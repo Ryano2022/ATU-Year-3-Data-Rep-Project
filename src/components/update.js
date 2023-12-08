@@ -12,7 +12,7 @@ export default function Update(props) {
   // update arrays using the React useState()
   // and without the Array objects push() method
   const [title, setTitle] = useState("");
-  const [cover, setCover] = useState("");
+  const [poster, setPoster] = useState("");
   const [director, setDirector] = useState("");
   // useNavigate return a function that we can use to navigate
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function Update(props) {
       .then((response) => {
         // Assign Response data to the arrays using useState.
         setTitle(response.data.title);
-        setCover(response.data.cover);
+        setPoster(response.data.poster);
         setDirector(response.data.director);
       })
       .catch(function (error) {
@@ -37,7 +37,7 @@ export default function Update(props) {
     const newFilm = {
       id: id,
       title: title,
-      cover: cover,
+      poster: poster,
       director: director
     };
     axios.put('http://localhost:4000/api/film/' + id, newFilm)
@@ -88,13 +88,13 @@ export default function Update(props) {
         </div>
         <div className="form-group">
           <br />
-          <label>Film Cover (URL): </label>
+          <label>Film Poster (URL): </label>
           <input type="text"
             className="form-control"
-            value={cover} // Text in the input box.
+            value={poster} // Text in the input box.
             onChange={
               (e) => {
-                setCover(e.target.value) // Update value.
+                setPoster(e.target.value) // Update value.
               }
             }
           />
