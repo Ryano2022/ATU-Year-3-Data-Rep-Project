@@ -18,13 +18,14 @@ function FilmItem(props) {
             <Card.Text>{props.myFilm.director}</Card.Text>
           </Card.Body>
           <Link to={'/update/' + props.myFilm._id} className='btn btn-primary'>Update</Link>
-          <Button variant='danger' onClick={(e) => {
-            axios.delete('http://localhost:4000/api/film/' + props.myFilm._id)
-              .then((res) => {
-                let reload = props.Reload();
-                // For reloading the page once you've deleted something.
-              })
-              .catch();
+          <Button variant='danger' onClick={() => {
+            if (confirm("Are you sure you want to delete this film?")) {
+              axios.delete('http://localhost:4000/api/film/' + props.myFilm._id)
+                .then(() => {
+                  props.Reload();
+                })
+                .catch();
+            }
           }}>Delete</Button>
         </Card>
       </center>
