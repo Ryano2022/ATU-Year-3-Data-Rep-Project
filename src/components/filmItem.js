@@ -19,7 +19,7 @@ function FilmItem(props) {
           </Card.Body>
           <Link to={'/update/' + props.myFilm._id} className='btn btn-primary'>Update</Link>
           <Button variant='danger' onClick={() => {
-            if (confirm("Are you sure you want to delete this film?")) {
+            if (window.confirm("Are you sure you want to delete this film?")) {
               axios.delete('http://localhost:4000/api/film/' + props.myFilm._id)
                 .then(() => {
                   props.Reload();
