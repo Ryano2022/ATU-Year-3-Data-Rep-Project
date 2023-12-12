@@ -12,7 +12,9 @@ export default function Update(props) {
   // update arrays using the React useState()
   // and without the Array objects push() method
   const [title, setTitle] = useState("");
-  const [poster, setPoster] = useState("");
+  const [poster1, setPoster1] = useState("");
+  const [poster2, setPoster2] = useState("");
+  const [poster3, setPoster3] = useState("");
   const [director, setDirector] = useState("");
   // useNavigate return a function that we can use to navigate
   const navigate = useNavigate();
@@ -25,7 +27,9 @@ export default function Update(props) {
       .then((response) => {
         // Assign Response data to the arrays using useState.
         setTitle(response.data.title);
-        setPoster(response.data.poster);
+        setPoster1(response.data.poster1);
+        setPoster2(response.data.poster2);
+        setPoster3(response.data.poster3);
         setDirector(response.data.director);
       })
       .catch(function (error) {
@@ -37,7 +41,9 @@ export default function Update(props) {
     const newFilm = {
       id: id,
       title: title,
-      poster: poster,
+      poster1: poster1,
+      poster2: poster2,
+      poster3: poster3, 
       director: director
     };
     axios.put('http://localhost:4000/api/film/' + id, newFilm)
@@ -89,13 +95,39 @@ export default function Update(props) {
         </div>
         <div className="form-group">
           <br />
-          <label>Film Poster (URL): </label>
+          <label>Film Poster 1 (URL): </label>
           <input type="text"
             className="form-control"
-            value={poster} // Text in the input box.
+            value={poster1} // Text in the input box.
             onChange={
               (e) => {
-                setPoster(e.target.value) // Update value.
+                setPoster1(e.target.value) // Update value.
+              }
+            }
+          />
+        </div>
+        <div className="form-group">
+          <br />
+          <label>Film Poster 2 (URL): </label>
+          <input type="text"
+            className="form-control"
+            value={poster2} // Text in the input box.
+            onChange={
+              (e) => {
+                setPoster2(e.target.value) // Update value.
+              }
+            }
+          />
+        </div>
+        <div className="form-group">
+          <br />
+          <label>Film Poster 3 (URL): </label>
+          <input type="text"
+            className="form-control"
+            value={poster3} // Text in the input box.
+            onChange={
+              (e) => {
+                setPoster3(e.target.value) // Update value.
               }
             }
           />

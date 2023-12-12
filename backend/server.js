@@ -19,7 +19,9 @@ async function main() {
 
 const filmSchema = new mongoose.Schema({
   title: String,
-  poster: String,
+  poster1: String,
+  poster2: String,
+  poster3: String,
   director: String
 })
 
@@ -46,7 +48,9 @@ app.post('/api/film', (req, res) => {
   // For MongoDB
   filmModel.create({
     title: req.body.title,
-    poster: req.body.poster,
+    poster1: req.body.poster1,
+    poster2: req.body.poster2,
+    poster3: req.body.poster3,
     director: req.body.director
   })
     .then(() => { res.status(201).send("Film created.") })
@@ -91,7 +95,8 @@ app.delete('/api/film/:id', async (req, res) => {
   let film = await filmModel.findByIdAndDelete(req.params.id);
   if (film) {
     res.status(200).send(film);
-  } else {
+  }
+  else {
     res.status(404).send("Film not found.");
   }
 })

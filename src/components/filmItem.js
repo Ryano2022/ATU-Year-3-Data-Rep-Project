@@ -10,7 +10,7 @@ function FilmItem(props) {
       <center>
         <Card style={{ height: '100%' }}>
           {/* Set the card image to the poster of the film. */}
-          <Card.Img variant="top" src={props.myFilm.poster} style={{ height: '500px' }} />
+          <Card.Img variant="top" src={props.myFilm.poster1} style={{ height: '500px' }} />
           <Card.Body>
             {/* Set the card title to the title of the film. */}
             <Card.Title>{props.myFilm.title}</Card.Title>
