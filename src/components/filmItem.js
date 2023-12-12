@@ -3,6 +3,10 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+const placeholderImagePath = require('../images/placeholder.jpg'); // Import the default placeholder image.
+const placeholderImagePath1 = require('../images/placeholder1.jpg'); // Import the first placeholder image.
+const placeholderImagePath2 = require('../images/placeholder2.jpg'); // Import the second placeholder image.
+const placeholderImagePath3 = require('../images/placeholder3.jpg'); // Import the third placeholder image.
 
 function FilmItem(props) {
   const [posterNum, setPosterNum] = useState(1);
@@ -25,14 +29,18 @@ function FilmItem(props) {
   };
 
   var posterSrc;
+
   if (posterNum === 1) {
-    posterSrc = props.myFilm.poster1;
+    posterSrc = props.myFilm.poster1 || placeholderImagePath1; // Assign a placeholder if poster1 is not available.
   } 
   else if (posterNum === 2) {
-    posterSrc = props.myFilm.poster2;
+    posterSrc = props.myFilm.poster2 || placeholderImagePath2; // Assign a placeholder if poster2 is not available.
   } 
   else if (posterNum === 3) {
-    posterSrc = props.myFilm.poster3;
+    posterSrc = props.myFilm.poster3 || placeholderImagePath3; // Assign a placeholder if poster3 is not available.
+  }
+  else {
+    posterSrc = placeholderImagePath; // Assign a placeholder if poster is not available.
   }
 
   return (
