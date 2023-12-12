@@ -45,7 +45,8 @@ function Read() {
       <h3>Viewing your Collection</h3>
       <br />
       <p>
-        Here you can view your list of films that you've watched.
+        Here you can view your list of films that you've watched. <br />
+        If nothing is showing up, then you haven't added any films yet or they are loading.
       </p>
       <br />
       <Films myFilms={data} DataReload={Reload}></Films>

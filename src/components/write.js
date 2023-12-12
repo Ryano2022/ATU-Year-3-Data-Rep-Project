@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Create() {
@@ -26,8 +27,13 @@ function Create() {
     }
     // Make a post to that URL and send the film object.
     axios.post('http://localhost:4000/api/film', film)
-      .then()
-      .catch();
+      .then(() => {
+        alert("Data has been successfully added!");
+        navigate('/Browse');
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
   } // Show up in the logs.
 
@@ -53,9 +59,10 @@ function Create() {
             value={title} // Text in the input box.
             onChange={
               (e) => {
-                setTitle(e.target.value) // Update value.
+                setTitle(e.target.value); // Update value.
               }
             }
+            required={true}
           />
         </div>
         <div className="form-group">
@@ -69,12 +76,13 @@ function Create() {
                 setDirector(e.target.value) // Update value.
               }
             }
+            required={true}
           />
         </div>
         <div className="form-group">
           <br/>
           <label>Film Poster 1 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster1} // Text in the input box.
             onChange={
@@ -82,12 +90,13 @@ function Create() {
                 setPoster1(e.target.value) // Update value.
               }
             }
+            required={false}
           />
         </div>
         <div className="form-group">
           <br/>
           <label>Film Poster 2 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster2} // Text in the input box.
             onChange={
@@ -95,12 +104,13 @@ function Create() {
                 setPoster2(e.target.value) // Update value.
               }
             }
+            required={false}
           />
         </div>
         <div className="form-group">
           <br/>
           <label>Film Poster 3 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster3} // Text in the input box.
             onChange={
@@ -108,6 +118,7 @@ function Create() {
                 setPoster3(e.target.value) // Update value.
               }
             }
+            required={false}
           />
         </div>
         <div>

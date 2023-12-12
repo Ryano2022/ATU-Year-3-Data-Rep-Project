@@ -1,8 +1,6 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams, useState, useEffect, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 export default function Update(props) {
   // The useParams hook returns an object of key/value pairs of
