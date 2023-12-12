@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, useState, useEffect, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Update(props) {

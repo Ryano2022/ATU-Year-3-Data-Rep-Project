@@ -9,7 +9,8 @@ function Create() {
   const [poster2, setPoster2] = useState('');
   const [poster3, setPoster3] = useState('');
   const [director, setDirector] = useState('');
-
+  // useNavigate return a function that we can use to navigate
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Title: " + title +
