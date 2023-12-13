@@ -76,6 +76,7 @@ export default function Update(props) {
                 setTitle(e.target.value) // Update value.
               }
             }
+            required={true}
           />
         </div>
         <div className="form-group">
@@ -89,12 +90,13 @@ export default function Update(props) {
                 setDirector(e.target.value) // Update value.
               }
             }
+            required={true}
           />
         </div>
         <div className="form-group">
           <br />
           <label>Film Poster 1 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster1} // Text in the input box.
             onChange={
@@ -107,7 +109,7 @@ export default function Update(props) {
         <div className="form-group">
           <br />
           <label>Film Poster 2 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster2} // Text in the input box.
             onChange={
@@ -120,7 +122,7 @@ export default function Update(props) {
         <div className="form-group">
           <br />
           <label>Film Poster 3 (URL): </label>
-          <input type="text"
+          <input type="url"
             className="form-control"
             value={poster3} // Text in the input box.
             onChange={
