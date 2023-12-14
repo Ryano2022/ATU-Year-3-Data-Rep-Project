@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Films from "./films";
+import SearchBar from "./searchBar";
+import axios from "axios";
+import SearchResultsList from "./searchResultsList";
 
-function Read() {
+
+export default function Read() {
   const [data, setData] = useState([]); // Set to an empty array.
+  const [results, setResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(
     () => {
       axios.get('http://localhost:4000/api/films') // API URL.
@@ -39,19 +45,27 @@ function Read() {
     <div>
       {/*<h1>Test from Read</h1>*/}
 
-      <br />
-      <br />
-      <br />
+      <br /><br /><br />
       <h3>Viewing your Collection</h3>
       <br />
       <p>
         Here you can view your list of films that you've watched. <br />
-        If nothing is showing up, then you haven't added any films yet or they are loading.
+        If nothing is showing up, then you haven't added any films yet or they are loading. <br /><br />
+        !! You can also use the search bar below to check if you've added the film to your list already !! <br />
       </p>
       <br />
-      <Films myFilms={data} DataReload={Reload}></Films>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <SearchBar setResults={setResults} />
+      </div>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <div style={{ width: "500px" }}>
+          <SearchResultsList results={results} />
+        </div>
+      </div>
+      <br /><br /><br />
+      <Films myFilms={data} DataReload={Reload} searchTerm={searchTerm} />
       {/* For passing functionality. */}
     </div>
   );
 }
-export default Read;
+
